@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NutriLeve</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      font-family: 'Nunito', sans-serif;
+    }
+    .title-font {
+      font-family: 'Playfair Display', serif;
+    }
+  </style>
+</head>
+
+<body class="h-full bg-white text-rose-900 overflow-auto">
+
+<div id="app" class="w-full min-h-full pb-12">
+
+  <!-- HEADER -->
+  <div class="text-center pt-10 pb-6 px-4">
+    <h1 class="title-font text-4xl md:text-5xl text-rose-700 mb-2">NutriLeve</h1>
+    <p class="text-rose-400 text-lg md:text-xl font-semibold">A combinação perfeita de sabor e saúde</p>
+    <div class="w-24 h-1 bg-green-500 mx-auto mt-4 rounded-full"></div>
+  </div>
+
+  <div class="max-w-2xl mx-auto px-4 space-y-8">
+
+    <!-- COMBOS -->
+    <section>
+      <h2 class="text-2xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+        <i data-lucide="package" class="w-6 h-6"></i>
+        Combos
+      </h2>
+      <div class="space-y-3">
+        <div class="flex items-center justify-between bg-rose-50 rounded-xl p-4">
+          <div><span class="font-semibold">Individual</span><span class="text-rose-400"> – R$25,00</span></div>
+          <button onclick="addCombo('Individual', 25)" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl font-semibold transition">Adicionar</button>
+        </div>
+        <div class="flex items-center justify-between bg-rose-50 rounded-xl p-4">
+          <div><span class="font-semibold">5 marmitas</span><span class="text-rose-400"> – R$110,00</span></div>
+          <button onclick="addCombo('5 marmitas', 110)" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl font-semibold transition">Adicionar</button>
+        </div>
+        <div class="flex items-center justify-between bg-rose-50 rounded-xl p-4">
+          <div><span class="font-semibold">7 marmitas</span><span class="text-rose-400"> – R$150,00</span></div>
+          <button onclick="addCombo('7 marmitas', 150)" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl font-semibold transition">Adicionar</button>
+        </div>
+        <div class="flex items-center justify-between bg-rose-50 rounded-xl p-4">
+          <div><span class="font-semibold">10 marmitas</span><span class="text-rose-400"> – R$210,00</span></div>
+          <button onclick="addCombo('10 marmitas', 210)" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl font-semibold transition">Adicionar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARDAPIO -->
+    <section>
+      <h2 class="text-2xl font-bold text-rose-700 mb-2 flex items-center gap-2">
+        <i data-lucide="utensils" class="w-6 h-6"></i>
+        Cardapio
+      </h2>
+      <p class="text-rose-400 text-sm mb-4 bg-rose-50 p-3 rounded-xl">
+        Selecione as opcoes abaixo na quantidade de marmitas que voce deseja.
+      </p>
+      <div class="space-y-3">
+        <div class="bg-rose-50 rounded-xl p-4">
+          <div class="flex items-center justify-between">
+            <div class="flex-1 pr-3">
+              <span class="font-semibold">Frango grelhado</span>
+              <p class="text-rose-400 text-sm">Arroz integral ou branco, feijao, peito de frango grelhado e mix de legumes</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="changeQty('frango', -1)" class="bg-green-500 text-white w-8 h-8 rounded-full">−</button>
+              <span id="qty-frango" class="w-6 text-center font-bold">0</span>
+              <button onclick="changeQty('frango', 1)" class="bg-green-500 text-white w-8 h-8 rounded-full">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-rose-50 rounded-xl p-4">
+          <div class="flex items-center justify-between">
+            <div class="flex-1 pr-3">
+              <span class="font-semibold">Lasanha de brocolis</span>
+              <p class="text-rose-400 text-sm">Massa integral, molho bolonhesa, molho branco e queijo mucarela</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="changeQty('lasanha', -1)" class="bg-green-500 text-white w-8 h-8 rounded-full">−</button>
+              <span id="qty-lasanha" class="w-6 text-center font-bold">0</span>
+              <button onclick="changeQty('lasanha', 1)" class="bg-green-500 text-white w-8 h-8 rounded-full">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-rose-50 rounded-xl p-4">
+          <div class="flex items-center justify-between">
+            <div class="flex-1 pr-3">
+              <span class="font-semibold">Vaca atolada fit</span>
+              <p class="text-rose-400 text-sm">Arroz integral ou branco, feijao, patinho em cubos com mandioca</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="changeQty('vaca', -1)" class="bg-green-500 text-white w-8 h-8 rounded-full">−</button>
+              <span id="qty-vaca" class="w-6 text-center font-bold">0</span>
+              <button onclick="changeQty('vaca', 1)" class="bg-green-500 text-white w-8 h-8 rounded-full">+</button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-rose-50 rounded-xl p-4">
+          <div class="flex items-center justify-between">
+            <div class="flex-1 pr-3">
+              <span class="font-semibold">Escondidinho de carne</span>
+              <p class="text-rose-400 text-sm">Pure de batata doce, molho bolonhesa e queijo mucarela</p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="changeQty('escondidinho', -1)" class="bg-green-500 text-white w-8 h-8 rounded-full">−</button>
+              <span id="qty-escondidinho" class="w-6 text-center font-bold">0</span>
+              <button onclick="changeQty('escondidinho', 1)" class="bg-green-500 text-white w-8 h-8 rounded-full">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREFERENCIAS -->
+    <section>
+      <h2 class="text-2xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+        <i data-lucide="heart" class="w-6 h-6"></i>
+        Preferencias
+      </h2>
+      <div class="space-y-3">
+        <div class="flex items-center justify-between bg-rose-50 rounded-xl p-4">
+          <span class="font-semibold">Arroz branco</span>
+          <button onclick="togglePref(this, 'Arroz branco')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl font-semibold transition">Adicionar</button>
+        </div>
+        <div class="flex items-center justify-between bg-rose-50 rounded-xl p-4">
+          <span class="font-semibold">Arroz integral</span>
+          <button onclick="togglePref(this, 'Arroz integral')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl font-semibold transition">Adicionar</button>
+        </div>
+        <div class="flex items-center justify-between bg-rose-50 rounded-xl p-4">
+          <span class="font-semibold">Sem feijao</span>
+          <button onclick="togglePref(this, 'Sem feijao')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl font-semibold transition">Adicionar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFORMACOES NUTRICIONAIS -->
+    <section>
+      <h2 class="text-2xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+        <i data-lucide="info" class="w-6 h-6"></i>
+        Informacoes Adicionais
+      </h2>
+      <div class="bg-rose-50 rounded-xl p-5 space-y-2 text-sm">
+        <p>🥡 <strong>Peso:</strong> 300g</p>
+        <p>🔥 <strong>Calorias:</strong> 400 a 500 kcal</p>
+        <p>🍚 <strong>Carboidrato:</strong> 100g</p>
+        <p>🥩 <strong>Proteina:</strong> 120g</p>
+        <p>🥦 <strong>Legumes:</strong> 80g</p>
+      </div>
+    </section>
+
+    <!-- ENTREGA -->
+    <section>
+      <h2 class="text-2xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+        <i data-lucide="truck" class="w-6 h-6"></i>
+        Entrega
+      </h2>
+      <div class="space-y-3">
+        <div class="flex items-center justify-between bg-rose-50 rounded-xl p-4">
+          <div><span class="font-semibold">Retirar no local</span><span class="text-rose-400"> – Gratis</span></div>
+          <button onclick="setEntrega(this, 'Retirar no local', 0)" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl font-semibold transition">Adicionar</button>
+        </div>
+        <div class="flex items-center justify-between bg-rose-50 rounded-xl p-4">
+          <div><span class="font-semibold">Receber em casa</span><span class="text-rose-400"> – R$5,00</span></div>
+          <button onclick="setEntrega(this, 'Receber em casa', 5)" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-xl font-semibold transition">Adicionar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGAMENTO -->
+    <section>
+      <h2 class="text-2xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+        <i data-lucide="credit-card" class="w-6 h-6"></i>
+        Pagamento
+      </h2>
+      <p class="text-rose-400 text-sm mb-4 bg-rose-50 p-3 rounded-xl">
+        O pedido so sera aceito com 20% do valor feito por Pix.
+      </p>
+      <div class="space-y-3">
+        <label class="flex items-center justify-between bg-rose-50 rounded-xl p-4 cursor-pointer">
+          <span class="font-semibold">Pix</span>
+          <input type="radio" name="pagamento" value="Pix" class="w-5 h-5" onchange="selecionarPagamento(this.value)">
+        </label>
+        <label class="flex items-center justify-between bg-rose-50 rounded-xl p-4 cursor-pointer">
+          <span class="font-semibold">Cartao</span>
+          <input type="radio" name="pagamento" value="Cartao" class="w-5 h-5" onchange="selecionarPagamento(this.value)">
+        </label>
+        <label class="flex items-center justify-between bg-rose-50 rounded-xl p-4 cursor-pointer">
+          <span class="font-semibold">Dinheiro</span>
+          <input type="radio" name="pagamento" value="Dinheiro" class="w-5 h-5" onchange="selecionarPagamento(this.value)">
+        </label>
+      </div>
+    </section>
+
+    <!-- DADOS -->
+    <section>
+      <h2 class="text-2xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+        <i data-lucide="user" class="w-6 h-6"></i>
+        Seus Dados
+      </h2>
+      <div class="space-y-4">
+        <input type="text" id="nomeCliente" placeholder="Nome completo" class="w-full bg-rose-50 border border-rose-200 rounded-xl p-4">
+        <textarea id="enderecoCliente" placeholder="Endereco completo" class="w-full bg-rose-50 border border-rose-200 rounded-xl p-4 min-h-[120px]"></textarea>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section>
+      <h2 class="text-2xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+        <i data-lucide="clipboard-list" class="w-6 h-6"></i>
+        Resumo do Pedido
+      </h2>
+      <div id="resumo" class="bg-rose-50 rounded-xl p-5 min-h-[80px]">
+        <p class="text-rose-300 italic">Nenhum item selecionado ainda.</p>
+      </div>
+      <div class="flex gap-3 mt-4">
+        <button onclick="limparPedido()" class="flex-1 bg-rose-200 hover:bg-rose-300 text-rose-700 py-3 rounded-xl font-bold transition">Limpar Pedido</button>
+        <button onclick="enviarPedido()" class="flex-1 bg-green-500 hover:bg-green-600 text-white py-3 rounded-xl font-bold transition">Enviar Pedido</button>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  let order = {
+    combo: null,
+    comboPrice: 0,
+    items: {
+      frango: 0,
+      lasanha: 0,
+      vaca: 0,
+      escondidinho: 0
+    },
+    prefs: new Set(),
+    entrega: null,
+    entregaPrice: 0,
+    pagamento: null
+  };
+
+  const itemNames = {
+    frango: 'Frango grelhado',
+    lasanha: 'Lasanha de brocolis',
+    vaca: 'Vaca atolada fit',
+    escondidinho: 'Escondidinho de carne'
+  };
+
+  function addCombo(name, price) {
+    order.combo = name;
+    order.comboPrice = price;
+    updateResumo();
+  }
+
+  function changeQty(id, delta) {
+    order.items[id] = Math.max(0, order.items[id] + delta);
+    document.getElementById('qty-' + id).textContent = order.items[id];
+    updateResumo();
+  }
+
+  function togglePref(btn, name) {
+    if (order.prefs.has(name)) {
+      order.prefs.delete(name);
+      btn.textContent = 'Adicionar';
+      btn.classList.remove('bg-rose-400');
+      btn.classList.add('bg-green-500');
+    } else {
+      order.prefs.add(name);
+      btn.textContent = 'Selecionado ✓';
+      btn.classList.remove('bg-green-500');
+      btn.classList.add('bg-rose-400');
+    }
+    updateResumo();
+  }
+
+  function setEntrega(btn, name, price) {
+    order.entrega = name;
+    order.entregaPrice = price;
+    document.querySelectorAll('[onclick*="setEntrega"]').forEach(b => {
+      b.textContent = 'Adicionar';
+      b.classList.remove('bg-rose-400');
+      b.classList.add('bg-green-500');
+    });
+    btn.textContent = 'Selecionado ✓';
+    btn.classList.remove('bg-green-500');
+    btn.classList.add('bg-rose-400');
+    updateResumo();
+  }
+
+  function selecionarPagamento(metodo) {
+    order.pagamento = metodo;
+    updateResumo();
+  }
+
+  function updateResumo() {
+    const el = document.getElementById('resumo');
+    let html = '';
+    let total = 0;
+
+    if (order.combo) {
+      html += `<p class="font-semibold">Combo: ${order.combo} - R$${order.comboPrice.toFixed(2)}</p>`;
+      total += order.comboPrice;
+    }
+
+    const selectedItems = Object.entries(order.items).filter(([,v]) => v > 0);
+    if (selectedItems.length) {
+      html += `<p class="font-semibold mt-2">Sabores:</p>`;
+      selectedItems.forEach(([k,v]) => {
+        html += `<p class="ml-4">• ${itemNames[k]} x ${v}</p>`;
+      });
+    }
+
+    if (order.prefs.size) {
+      html += `<p class="font-semibold mt-2">Preferencias:</p>`;
+      order.prefs.forEach(p => {
+        html += `<p class="ml-4">• ${p}</p>`;
+      });
+    }
+
+    if (order.entrega) {
+      html += `<p class="font-semibold mt-2">${order.entrega}</p>`;
+      total += order.entregaPrice;
+    }
+
+    if (order.pagamento) {
+      html += `<p class="font-semibold mt-2">Pagamento: ${order.pagamento}</p>`;
+    }
+
+    if (total > 0) {
+      html += `<p class="font-bold text-lg mt-3 border-t pt-3">Total: R$${total.toFixed(2)}</p>`;
+    }
+
+    if (!order.combo && selectedItems.length === 0 && order.prefs.size === 0 && !order.entrega) {
+      html = '<p class="text-rose-300 italic">Nenhum item selecionado ainda.</p>';
+    }
+
+    el.innerHTML = html;
+  }
+
+  function limparPedido() {
+    if (confirm('Tem certeza que deseja limpar todo o pedido?')) {
+      location.reload();
+    }
+  }
+
+  function enviarPedido() {
+    const nome = document.getElementById('nomeCliente').value.trim();
+    const endereco = document.getElementById('enderecoCliente').value.trim();
+
+    if (!nome || !endereco) {
+      alert('Preencha nome e endereco.');
+      return;
+    }
+
+    if (!order.pagamento) {
+      alert('Por favor, selecione uma forma de pagamento!');
+      return;
+    }
+
+    let mensagem = `*NOVO PEDIDO - NUTRILEVE*%0A%0A`;
+    mensagem += `Nome: ${nome}%0A`;
+    mensagem += `Endereco: ${endereco}%0A%0A`;
+
+    if (order.combo) {
+      mensagem += `Combo: ${order.combo}%0A`;
+    }
+
+    const selectedItems = Object.entries(order.items).filter(([,v]) => v > 0);
+    if (selectedItems.length) {
+      mensagem += `%0A--- SABORES ---%0A`;
+      selectedItems.forEach(([k,v]) => {
+        mensagem += `- ${itemNames[k]} x ${v}%0A`;
+      });
+    }
+
+    if (order.prefs.size) {
+      mensagem += `%0A--- PREFERENCIAS ---%0A`;
+      order.prefs.forEach(p => {
+        mensagem += `- ${p}%0A`;
+      });
+    }
+
+    if (order.entrega) {
+      mensagem += `%0A--- ENTREGA ---%0A`;
+      mensagem += `- ${order.entrega} (R$${order.entregaPrice.toFixed(2)})%0A`;
+    }
+
+    if (order.pagamento) {
+      mensagem += `%0A--- PAGAMENTO ---%0A`;
+      mensagem += `- ${order.pagamento}%0A`;
+    }
+
+    let total = order.comboPrice + order.entregaPrice;
+    mensagem += `%0A--- TOTAL ---%0A`;
+    mensagem += `R$ ${total.toFixed(2)}%0A%0A`;
+    mensagem += `Obrigado pelo pedido!`;
+
+    const telefone = '5517996196720';
+    const url = `https://wa.me/${telefone}?text=${mensagem}`;
+    window.open(url, '_blank');
+  }
+
+  lucide.createIcons();
+</script>
+
+</body>
+</html>
